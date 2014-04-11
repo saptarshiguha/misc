@@ -11,8 +11,8 @@ rhread("/user/sguha/fhr/samples/output/createdTime.txt",type='text')
 fileOrigin <-  strsplit(rhread("/user/sguha/fhr/samples/output/createdTime.txt",type='text'),"\t")[[2]]
 fileOrigin <-  strftime(fileOriginDate <- as.Date(strsplit(fileOrigin,"_")[[1]][[2]]),"%Y%m%d")
 ASOF <- strftime(fileOriginDate-7,"%Y-%m-%d")
-rhmkdir(sprintf("/user/sguha/rollups/%s-1pct",ASOF))
-hdfs.setwd(sprintf("/user/sguha/rollups/%s-1pct/",ASOF))
+rhmkdir(sprintf("/user/sguha/rollups/%s-1pct", strftime(fileOriginDate,"%Y-%m-%d")))
+hdfs.setwd(sprintf("/user/sguha/rollups/%s-1pct/",strftime(fileOriginDate,"%Y-%m-%d")))
 
 
 timeChunksDay <- dayTimeChunk(strftime(fileOriginDate-170,"%Y-%m-%d"),strftime(fileOriginDate-7,"%Y-%m-%d"))

@@ -262,11 +262,15 @@ monthTimeChunk <- function(fr,to){
         sprintf("%s|%s",roundDown(s), roundUp(s))})),"|",fixed=TRUE),function(s){
             c(start=s[[1]], end=s[[2]])})
 }
-quarterTimeChunk <- function(year){
-    list(list(start=sprintf("%s-01-01",year),end=sprintf("%s-03-31",year)),
-         list(start=sprintf("%s-04-01",year),end=sprintf("%s-06-30",year)),
-         list(start=sprintf("%s-07-01",year),end=sprintf("%s-09-30",year)),
-         list(start=sprintf("%s-10-01",year),end=sprintf("%s-12-31",year)))
+
+quarterTimeChunk <- function(years){
+    a <- list()
+    unlist(lapply(years,function(year){
+        list(c(start=sprintf("%s-01-01",year),end=sprintf("%s-03-31",year)),
+             c(start=sprintf("%s-04-01",year),end=sprintf("%s-06-30",year)),
+             c(start=sprintf("%s-07-01",year),end=sprintf("%s-09-30",year)),
+             c(start=sprintf("%s-10-01",year),end=sprintf("%s-12-31",year)))
+    }),rec=FALSE)
 }
     
 
